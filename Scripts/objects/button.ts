@@ -28,16 +28,16 @@ module objects {
          * Creates an instance of Button.
          * 
          * @constructor 
-         * @param {string} pathString
+         * @param {string} imageString
          * @param {number} x
          * @param {number} y
          * @param {boolean} isCentered
          */
-        constructor(pathString: string, x:number, y:number, isCentered:boolean) {
-            super(pathString);
+        constructor(imageString: string, x: number, y: number, isCentered: boolean) {
+            super(core.assets.getResult(imageString));
 
             // Check if user wants to change regX and regY values to the center 
-            if(isCentered) {
+            if (isCentered) {
                 this.regX = this.getBounds().width * 0.5;
                 this.regY = this.getBounds().height * 0.5;
             }
@@ -59,7 +59,7 @@ module objects {
          * @method _mouseOver
          * @param {createjs.MouseEvent} event
          */
-        private _mouseOver(event:createjs.MouseEvent):void {
+        private _mouseOver(event: createjs.MouseEvent): void {
             this.alpha = 0.7;
         }
 
@@ -70,7 +70,7 @@ module objects {
          * @method _mouseOut
          * @param {createjs.MouseEvent} event
          */
-        private _mouseOut(event:createjs.MouseEvent):void {
+        private _mouseOut(event: createjs.MouseEvent): void {
             this.alpha = 1.0;
         }
     }

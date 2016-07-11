@@ -9,11 +9,26 @@
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 var core;
 (function (core) {
-    // Variable Declarations
     // make a reference to the canvas element
     var canvas = document.getElementById("canvas");
     var helloLabel;
     var startButton; // reference to our button class
+    // asset manifest for images and sounds
+    var assetData = [
+        { id: "startButton", src: "../../Assets/images/startButton.png" }
+    ];
+    /**
+     * This method preloads assets for the game
+     *
+     * @method preload
+     * @returns {void}
+     */
+    function preload() {
+        core.assets = new createjs.LoadQueue(); // Instantiates the loader   
+        core.assets.installPlugin(createjs.Sound);
+        core.assets.on("complete", init, this);
+        core.assets.loadManifest(assetData);
+    }
     /**
      * This method is the entry point for the application
      *
@@ -59,7 +74,7 @@ var core;
         startButton.on("click", startButtonClick);
     }
     //wait until the window object is finished loading then call the init method
-    window.addEventListener("load", init);
+    window.addEventListener("load", preload);
 })(core || (core = {}));
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 //# sourceMappingURL=game.js.map
