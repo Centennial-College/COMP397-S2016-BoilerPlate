@@ -26,6 +26,10 @@ namespace core {
 
     let startButton: objects.Button; // reference to our button class
 
+    // declare variables to work with different scenes
+    let currentScene: objects.Scene;
+    let scene: number;
+
     // asset manifest for images and sounds
     let assetData = [
         { id: "startButton", src: "../../Assets/images/startButton.png" }
@@ -55,7 +59,9 @@ namespace core {
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", gameLoop); // create an event listener for the tick event
-        main(); // call the main game function
+
+        // setup the default scene
+        scene = config.Scene.MENU;
     }
 
     /**
@@ -67,6 +73,9 @@ namespace core {
      */
     function gameLoop(event: createjs.Event): void {
 
+        // call the active scene's update
+        currentScene.Update();
+        
         stage.update(); // refreshes the stage
     }
 
@@ -79,21 +88,28 @@ namespace core {
         helloLabel.text = "clicked!";
     }
 
-    /**
-     * This is the main game method
-     * 
-     * @method main
-     * @returns {void}
-     */
-    function main(): void {
-        helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240);
-        stage.addChild(helloLabel);
-
-        startButton = new objects.Button(
-            "../../Assets/images/startButton.png", 320, 340, true);
-        stage.addChild(startButton);
-
-        startButton.on("click", startButtonClick);
+    function changeScene(): void {
+        // Launch Various Scenes
+        switch (scene) {
+            // Show the MENU Scene
+            case config.Scene.MENU:
+                stage.removeAllChildren();
+                // menu = new scenes.Menu();
+                // currentScene = menu;
+                break;
+            // Show the PLAY Scene
+            case config.Scene.PLAY:
+                stage.removeAllChildren();
+                // play = new scenes.Play();
+                // currentScene = play;
+                break;
+            // Show the GAME OVER Scene
+            case config.Scene.OVER:
+                stage.removeAllChildren();
+                // over = new scenes.Over();
+                // currentScene = over;
+                break;
+        }
     }
 
     //wait until the window object is finished loading then call the init method
