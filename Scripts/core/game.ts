@@ -26,9 +26,11 @@ namespace core {
 
     let startButton: objects.Button; // reference to our button class
 
-    // declare variables to work with different scenes
+    // declare scene variables
     let currentScene: objects.Scene;
-    let scene: number;
+    export let scene: number;
+
+    let menu: scenes.Menu;
 
     // asset manifest for images and sounds
     let assetData = [
@@ -62,6 +64,7 @@ namespace core {
 
         // setup the default scene
         scene = config.Scene.MENU;
+        changeScene();
     }
 
     /**
@@ -75,7 +78,7 @@ namespace core {
 
         // call the active scene's update
         currentScene.Update();
-        
+
         stage.update(); // refreshes the stage
     }
 
@@ -88,14 +91,14 @@ namespace core {
         helloLabel.text = "clicked!";
     }
 
-    function changeScene(): void {
+    export function changeScene(): void {
         // Launch Various Scenes
         switch (scene) {
             // Show the MENU Scene
             case config.Scene.MENU:
                 stage.removeAllChildren();
-                // menu = new scenes.Menu();
-                // currentScene = menu;
+                menu = new scenes.Menu();
+                currentScene = menu;
                 break;
             // Show the PLAY Scene
             case config.Scene.PLAY:

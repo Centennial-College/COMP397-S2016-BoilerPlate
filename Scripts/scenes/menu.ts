@@ -13,8 +13,8 @@ module scenes {
      */
     export class Menu extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        private _menuLabel: objects.Label;
         private _startButton: objects.Button;
-        private _helloWorldLabel: objects.Label;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
@@ -29,46 +29,50 @@ module scenes {
          * This method adds game objects to the menu scene
          * 
          * @public
-         * @method start
+         * @method Start
          * @returns {void}
          */
-        public start(): void {
+        public Start(): void {
 
-            // add the HELLO WORLD Label to the MENU scene
-            this._helloWorldLabel = new objects.Label(
-                "HELLO WORLD",
+            // Add Menu Label
+            this._menuLabel = new objects.Label(
+                "MENU SCENE",
                 "60px",
-                "Arial",
+                "Consolas",
                 "#000",
-                200,
-                200);
-            this.addChild(this._helloWorldLabel);
+                320,
+                240);
+            this.addChild(this._menuLabel);
 
-            // add the START button to the MENU scene
+            // add the start button
             this._startButton = new objects.Button(
                 "startButton",
-                200,
-                400,
+                320,
+                420,
                 true);
             this.addChild(this._startButton);
 
-            // START Button event listener
+            // Start button event listener
             this._startButton.on("click", this._startButtonClick, this);
+
+            // Add this scene to the global scene container
+            core.stage.addChild(this);
         }
 
         /**
          * Update game objects in the gameover scene
          * 
          * @public
-         * @method update
+         * @method Update
          * @returns {void}
          */
-        public update(): void {
-
+        public Update(): void {
+            // scene updates happen here...
         }
 
 
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // EVENT HANDLERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
          * This is an event handler for the click event
          * 
@@ -78,7 +82,12 @@ module scenes {
          * @returns {void}
          */
         private _startButtonClick(event: createjs.MouseEvent) {
-            this._helloWorldLabel.text = "You clicked on me!";
+            // Switch the scene
+            // core.scene = config.Scene.PLAY;
+            // core.changeScene();
+
+            // for now change label text to "clicked"
+            this._menuLabel.text = "You clicked on me!";
         }
     }
 }

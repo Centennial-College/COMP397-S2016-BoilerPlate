@@ -13,9 +13,9 @@ var core;
     var canvas = document.getElementById("canvas");
     var helloLabel;
     var startButton; // reference to our button class
-    // declare variables to work with different scenes
+    // declare scene variables
     var currentScene;
-    var scene;
+    var menu;
     // asset manifest for images and sounds
     var assetData = [
         { id: "startButton", src: "../../Assets/images/startButton.png" }
@@ -44,7 +44,8 @@ var core;
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", gameLoop); // create an event listener for the tick event
         // setup the default scene
-        scene = config.Scene.MENU;
+        core.scene = config.Scene.MENU;
+        changeScene();
     }
     /**
      * This is the main game loop
@@ -68,12 +69,12 @@ var core;
     }
     function changeScene() {
         // Launch Various Scenes
-        switch (scene) {
+        switch (core.scene) {
             // Show the MENU Scene
             case config.Scene.MENU:
                 core.stage.removeAllChildren();
-                // menu = new scenes.Menu();
-                // currentScene = menu;
+                menu = new scenes.Menu();
+                currentScene = menu;
                 break;
             // Show the PLAY Scene
             case config.Scene.PLAY:
@@ -89,6 +90,7 @@ var core;
                 break;
         }
     }
+    core.changeScene = changeScene;
     //wait until the window object is finished loading then call the init method
     window.addEventListener("load", preload);
 })(core || (core = {}));

@@ -31,29 +31,33 @@ var scenes;
          * This method adds game objects to the menu scene
          *
          * @public
-         * @method start
+         * @method Start
          * @returns {void}
          */
-        Menu.prototype.start = function () {
-            // add the HELLO WORLD Label to the MENU scene
-            this._helloWorldLabel = new objects.Label("HELLO WORLD", "60px", "Arial", "#000", 200, 200);
-            this.addChild(this._helloWorldLabel);
-            // add the START button to the MENU scene
-            this._startButton = new objects.Button("startButton", 200, 400, true);
+        Menu.prototype.Start = function () {
+            // Add Menu Label
+            this._menuLabel = new objects.Label("MENU SCENE", "60px", "Consolas", "#000", 320, 240);
+            this.addChild(this._menuLabel);
+            // add the start button
+            this._startButton = new objects.Button("startButton", 320, 420, true);
             this.addChild(this._startButton);
-            // START Button event listener
+            // Start button event listener
             this._startButton.on("click", this._startButtonClick, this);
+            // Add this scene to the global scene container
+            core.stage.addChild(this);
         };
         /**
          * Update game objects in the gameover scene
          *
          * @public
-         * @method update
+         * @method Update
          * @returns {void}
          */
-        Menu.prototype.update = function () {
+        Menu.prototype.Update = function () {
+            // scene updates happen here...
         };
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // EVENT HANDLERS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
          * This is an event handler for the click event
          *
@@ -63,7 +67,11 @@ var scenes;
          * @returns {void}
          */
         Menu.prototype._startButtonClick = function (event) {
-            this._helloWorldLabel.text = "You clicked on me!";
+            // Switch the scene
+            // core.scene = config.Scene.PLAY;
+            // core.changeScene();
+            // for now change label text to "clicked"
+            this._menuLabel.text = "You clicked on me!";
         };
         return Menu;
     }(objects.Scene));
