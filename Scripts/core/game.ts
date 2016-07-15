@@ -35,7 +35,7 @@ namespace core {
     let play: scenes.Play;
 
     // asset manifest for images and sounds
-    let assetData = [
+    let assetData: objects.Asset[] = [
         { id: "startButton", src: "../../Assets/images/startButton.png" },
         { id: "restartButton", src: "../../Assets/images/restartButton.png" },
         { id: "exitButton", src: "../../Assets/images/exitButton.png" },
