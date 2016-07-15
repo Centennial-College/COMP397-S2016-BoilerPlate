@@ -5,20 +5,20 @@
  */
 module scenes {
     /**
-     * This Menu scene extends the objects.Scene object 
+     * This Over scene extends the objects.Scene object 
      * 
      * @export
-     * @class Menu
+     * @class Over
      * @extends {objects.Scene}
      */
-    export class Menu extends objects.Scene {
+    export class Over extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        private _menuLabel: objects.Label;
-        private _startButton: objects.Button;
+        private _gameOverLabel: objects.Label;
+        private _restartButton: objects.Button;
 
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
-         * Creates an instance of Menu.
+         * Creates an instance of Over.
          */
         constructor() {
             super();
@@ -26,7 +26,7 @@ module scenes {
 
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         /**
-         * This method adds game objects to the menu scene
+         * This method adds game objects to the Over scene
          * 
          * @public
          * @method Start
@@ -34,33 +34,33 @@ module scenes {
          */
         public Start(): void {
 
-            // Add Menu Label
-            this._menuLabel = new objects.Label(
-                "MENU SCENE",
+            // Add GameOver Label
+            this._gameOverLabel = new objects.Label(
+                "GAME OVER SCENE",
                 "60px",
                 "Consolas",
                 "#000",
                 320,
                 240);
-            this.addChild(this._menuLabel);
+            this.addChild(this._gameOverLabel);
 
-            // add the start button
-            this._startButton = new objects.Button(
-                "startButton",
+            // add the restart button
+            this._restartButton = new objects.Button(
+                "restartButton",
                 320,
                 420,
                 true);
-            this.addChild(this._startButton);
+            this.addChild(this._restartButton);
 
-            // Start button event listener
-            this._startButton.on("click", this._startButtonClick, this);
+            // Restart button event listener
+            this._restartButton.on("click", this._restartButtonClick, this);
 
             // Add this scene to the global scene container
             core.stage.addChild(this);
         }
 
         /**
-         * Update game objects in the menu scene
+         * Update game objects in the Over scene
          * 
          * @public
          * @method Update
@@ -77,11 +77,11 @@ module scenes {
          * This is an event handler for the click event
          * 
          * @private
-         * @method _startOverButtonClick
+         * @method _restartOverButtonClick
          * @param {createjs.MouseEvent} event
          * @returns {void}
          */
-        private _startButtonClick(event: createjs.MouseEvent) {
+        private _restartButtonClick(event: createjs.MouseEvent) {
             // Switch the scene
             core.scene = config.Scene.PLAY;
             core.changeScene();

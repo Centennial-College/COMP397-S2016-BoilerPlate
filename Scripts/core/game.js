@@ -16,9 +16,14 @@ var core;
     // declare scene variables
     var currentScene;
     var menu;
+    var over;
+    var play;
     // asset manifest for images and sounds
     var assetData = [
-        { id: "startButton", src: "../../Assets/images/startButton.png" }
+        { id: "startButton", src: "../../Assets/images/startButton.png" },
+        { id: "restartButton", src: "../../Assets/images/restartButton.png" },
+        { id: "exitButton", src: "../../Assets/images/exitButton.png" },
+        { id: "nextButton", src: "../../Assets/images/nextButton.png" }
     ];
     /**
      * This method preloads assets for the game
@@ -79,14 +84,14 @@ var core;
             // Show the PLAY Scene
             case config.Scene.PLAY:
                 core.stage.removeAllChildren();
-                // play = new scenes.Play();
-                // currentScene = play;
+                play = new scenes.Play();
+                currentScene = play;
                 break;
             // Show the GAME OVER Scene
             case config.Scene.OVER:
                 core.stage.removeAllChildren();
-                // over = new scenes.Over();
-                // currentScene = over;
+                over = new scenes.Over();
+                currentScene = over;
                 break;
         }
     }

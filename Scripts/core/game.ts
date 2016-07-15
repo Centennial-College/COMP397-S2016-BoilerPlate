@@ -31,10 +31,15 @@ namespace core {
     export let scene: number;
 
     let menu: scenes.Menu;
+    let over: scenes.Over;
+    let play: scenes.Play;
 
     // asset manifest for images and sounds
     let assetData = [
-        { id: "startButton", src: "../../Assets/images/startButton.png" }
+        { id: "startButton", src: "../../Assets/images/startButton.png" },
+        { id: "restartButton", src: "../../Assets/images/restartButton.png" },
+        { id: "exitButton", src: "../../Assets/images/exitButton.png" },
+        { id: "nextButton", src: "../../Assets/images/nextButton.png" }
     ];
 
     /**
@@ -103,14 +108,14 @@ namespace core {
             // Show the PLAY Scene
             case config.Scene.PLAY:
                 stage.removeAllChildren();
-                // play = new scenes.Play();
-                // currentScene = play;
+                play = new scenes.Play();
+                currentScene = play;
                 break;
             // Show the GAME OVER Scene
             case config.Scene.OVER:
                 stage.removeAllChildren();
-                // over = new scenes.Over();
-                // currentScene = over;
+                over = new scenes.Over();
+                currentScene = over;
                 break;
         }
     }
